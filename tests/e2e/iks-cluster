@@ -55,7 +55,7 @@ addon_update=1
 FLAVOR_vpc_gen2="bx2.4x16"
 FLAVOR_vpc_classic="b2.4x16"
 FLAVOR_classic="b3c.4x16"
-WORKER_NODE_FLAVOR="bx2.4x16"
+WORKER_NODE_FLAVOR="bz2.4x16"
 WORKER_NODE_COUNT=2
 WORKER_NODE_COUNT_PERZONE=1
 
@@ -389,7 +389,7 @@ function cluster_create_vpc {
     else
         ibmcloud ks cluster create $IC_PROVIDER --name $cluster_name --zone $PRIMARY_ZONE \
             --vpc-id $VPC_ID --subnet-id $PRIM_SUBNET_ID --version $kube_ver \
-	    --flavor $WORKER_NODE_FLAVOR --workers $worker_node_count; rc=$?
+	    --flavor $WORKER_NODE_FLAVOR --operating-system UBUNTU_18_S390X --workers $worker_node_count; rc=$?
     fi
     if [[ $rc -ne 0 ]]; then set +x;  return 1; fi
 
