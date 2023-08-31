@@ -387,6 +387,7 @@ function cluster_create_vpc {
             --vpc-id $VPC_ID --subnet-id $PRIM_SUBNET_ID --version $kube_ver --cos-instance "$E2ETEST_IC_COS_INSTANCE" \
 	    --flavor $WORKER_NODE_FLAVOR --workers $worker_node_count; rc=$?
     else
+        ibmcloud ks flavors --zone $PRIMARY_ZONE
         ibmcloud ks cluster create $IC_PROVIDER --name $cluster_name --zone $PRIMARY_ZONE \
             --vpc-id $VPC_ID --subnet-id $PRIM_SUBNET_ID --version $kube_ver \
 	    --flavor bz2.8x32 --operating-system UBUNTU_18_S390X --workers $worker_node_count; rc=$?
